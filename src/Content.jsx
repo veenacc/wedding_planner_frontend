@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Modal } from "./Modal";
 import { EventsShow } from "./EventsShow";
 import { Signup } from "./Signup";
+import { Login } from "./Login";
 
 
 export function Content() {
@@ -37,6 +38,7 @@ export function Content() {
   return (
     <main>
       <Signup />
+      <Login />
       <EventsIndex events={events} onShowEvent = {handleShowEvents}/>
       <Modal show={isEventShowVisible} onClose ={handleClose} >
         <EventsShow  event={currentEvent}/>
