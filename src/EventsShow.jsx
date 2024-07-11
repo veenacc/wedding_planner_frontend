@@ -7,6 +7,7 @@ export function EventsShow(props) {
       <p>Start_time: {props.event.start_time}</p>
       <p>End_time: {props.event.end_time}</p> <hr />
       <p>Description: {props.event.description}</p>
+      {localStorage.getItem('jwt') && <button>Add To project</button>}
     </div>
   );
 }
