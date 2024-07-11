@@ -4,13 +4,14 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Modal } from "./Modal";
 import { EventsShow } from "./EventsShow";
+import { Signup } from "./Signup";
 
 
 export function Content() {
 
   const [events, setEvents] = useState([]);
   const [currentEvent, setCurrentEvent] = useState({})
-  const [isEventShowVisible, setIsEventShowVisible] = useState(true)
+  const [isEventShowVisible, setIsEventShowVisible] = useState(false)
 
    const handleIndexEvents = () => {
      console.log("handleIndexPhotos");
@@ -35,6 +36,7 @@ export function Content() {
 
   return (
     <main>
+      <Signup />
       <EventsIndex events={events} onShowEvent = {handleShowEvents}/>
       <Modal show={isEventShowVisible} onClose ={handleClose} >
         <EventsShow  event={currentEvent}/>
