@@ -6,6 +6,7 @@ import { Modal } from "./Modal";
 import { EventsShow } from "./EventsShow";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
+import { LogoutLink } from "./LogoutLink";
 
 
 export function Content() {
@@ -38,7 +39,8 @@ export function Content() {
   return (
     <main>
       <Signup />
-      <Login />
+      <Login /> <br />
+      <LogoutLink /> <hr />
       <EventsIndex events={events} onShowEvent = {handleShowEvents}/>
       <Modal show={isEventShowVisible} onClose ={handleClose} >
         <EventsShow  event={currentEvent}/>
