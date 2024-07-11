@@ -2,11 +2,15 @@
 import { EventsIndex } from "./EventsIndex";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Modal } from "./Modal";
+import { EventsShow } from "./EventsShow";
 
 
 export function Content() {
 
   const [events, setEvents] = useState([]);
+  const [currentEvent, setCurrentEvent] = useState({})
+  const [isEventShowVisible, setIsEventShowVisible] = useState(true)
 
    const handleIndexEvents = () => {
      console.log("handleIndexPhotos");
@@ -14,13 +18,27 @@ export function Content() {
        console.log(response.data);
        setEvents(response.data);
      });
-   };
+    };
+
+    const handleShowEvents = (event) => {
+      console.log("handleShowEvents", event);
+      setIsEventShowVisible(true);
+      setCurrentEvent(event);
+    };
+
+    const handleClose = () => {
+      console.log("handleClose");
+      setIsEventShowVisible(false);
+    };
 
   useEffect(handleIndexEvents, []);
 
   return (
     <main>
-      <EventsIndex events={events}/>
+      <EventsIndex events={events} onShowEvent = {handleShowEvents}/>
+      <Modal show={isEventShowVisible} onClose ={handleClose} >
+        <EventsShow  event={currentEvent}/>
+      </Modal>
     </main>
   )
 }

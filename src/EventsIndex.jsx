@@ -9,7 +9,7 @@ export function EventsIndex(props) {
           <h2>{event.start_time}</h2>
           <h2>{event.end_time}</h2>
           <img src={event.image_url}  width="200" height="200"/>
-          
+          <button onClick={() => props.onShowEvent(event)}>More info</button>
          </div>
       ))}
     </div>
