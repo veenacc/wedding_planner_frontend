@@ -7,6 +7,7 @@ import { EventsShow } from "./EventsShow";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
+import { Routes, Route } from "react-router-dom";
 
 
 export function Content() {
@@ -34,10 +35,13 @@ export function Content() {
       axios.patch(`http://localhost:3000/weddings/${currentEvent.id}.json`).then(
         response =>{
           console.log(response.data);
+          // console.log(events);
+          setCurrentEvent(response.data)
           setEvents(
             events.map((evnt) => {
               if (evnt.id === response.data.id)
               {
+                console.log(evnt)
                 return response.data;
               }
               else
@@ -47,7 +51,11 @@ export function Content() {
             }
             )
           )
-          handleClose();
+          // .then(data => {
+          //   console.log(data)
+          //   console.log(events)
+          // });
+          // handleClose();
           // location.reload();
         });
     }
@@ -61,10 +69,14 @@ export function Content() {
 
   return (
     <main>
-      <Signup />
-      <Login /> <br />
-      <LogoutLink /> <hr />
-      <EventsIndex events={events} onShowEvent = {handleShowEvents}/>
+      <Routes>
+        <Route path = "/Signup" element = {<Signup /> }   />
+        <Route path = "/Login"  element = {<Login /> } />
+        <Route path = "/LogoutLink" element = {<LogoutLink /> } />
+        <Route path = "/Home" element = {<EventsIndex events={events} onShowEvent = {handleShowEvents}/>} />
+      </Routes>
+      
+      
       <Modal show={isEventShowVisible} onClose ={handleClose} >
         <EventsShow  event={currentEvent} onUpdateUserId={handleUpdateUserid}/>
       </Modal>

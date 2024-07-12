@@ -13,7 +13,7 @@ export function Signup() {
       .then((response) => {
         console.log(response.data);
         event.target.reset();
-        window.location.href = "/"; // Change this to hide a modal, redirect to a specific page, etc.
+        window.location.href = "/Login"; // Change this to hide a modal, redirect to a specific page, etc.
       })
       .catch((error) => {
         console.log(error.response.data.errors);
@@ -24,11 +24,7 @@ export function Signup() {
   return (
     <div id="signup">
       <h1>Signup</h1>
-      <ul>
-        {errors.map((error) => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
+    
       <form onSubmit={handleSubmit}>
         <div>
           Name: <input name="name" type="text" />
@@ -47,6 +43,13 @@ export function Signup() {
         </div>
         <button type="submit">Signup</button>
       </form>
+
+      <ul>
+        {errors.map((error) => (
+          <li key={error}>{error}</li>
+        ))}
+      </ul>
+
     </div>
   );
 }
