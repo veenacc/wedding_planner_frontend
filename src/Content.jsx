@@ -16,7 +16,7 @@ export function Content() {
   const [isEventShowVisible, setIsEventShowVisible] = useState(false)
 
    const handleIndexEvents = () => {
-     console.log("handleIndexPhotos");
+     console.log("handleIndexEvents");
      axios.get("http://localhost:3000/weddings.json").then((response) => {
        console.log(response.data);
        setEvents(response.data);
@@ -28,6 +28,29 @@ export function Content() {
       setIsEventShowVisible(true);
       setCurrentEvent(event);
     };
+
+    const handleUpdateUserid = () => {
+      console.log("from handleUpdateUserid" )
+      axios.patch(`http://localhost:3000/weddings/${currentEvent.id}.json`).then(
+        response =>{
+          console.log(response.data);
+          setEvents(
+            events.map((evnt) => {
+              if (evnt.id === response.data.id)
+              {
+                return response.data;
+              }
+              else
+              {
+                return evnt;
+              }
+            }
+            )
+          )
+          handleClose();
+          // location.reload();
+        });
+    }
 
     const handleClose = () => {
       console.log("handleClose");
@@ -43,7 +66,7 @@ export function Content() {
       <LogoutLink /> <hr />
       <EventsIndex events={events} onShowEvent = {handleShowEvents}/>
       <Modal show={isEventShowVisible} onClose ={handleClose} >
-        <EventsShow  event={currentEvent}/>
+        <EventsShow  event={currentEvent} onUpdateUserId={handleUpdateUserid}/>
       </Modal>
     </main>
   )

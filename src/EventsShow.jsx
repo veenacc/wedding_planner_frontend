@@ -1,4 +1,11 @@
 export function EventsShow(props) {
+
+  const handleAddToProject=()=>{
+    console.log("from  Add to project")
+    event.preventDefault();
+    props.onUpdateUserId() ; 
+
+  }
   return (
     <div>
       <h1>Wedding Details</h1>
@@ -7,7 +14,8 @@ export function EventsShow(props) {
       <p>Start_time: {props.event.start_time}</p>
       <p>End_time: {props.event.end_time}</p> <hr />
       <p>Description: {props.event.description}</p>
-      {localStorage.getItem('jwt') && <button>Add To project</button>}
+      <p>Owner: {props.event.user_id} </p>
+      {!props.event.user_id && localStorage.getItem('jwt') && <button onClick={handleAddToProject}>Add To project</button>}
     </div>
   );
 }
