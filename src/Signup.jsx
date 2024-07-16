@@ -41,6 +41,9 @@ export function Signup() {
         <div>
           Image: <input name="image_url" type="url" />
         </div>
+        <div>
+          Admin Status: <input name="admin" type="boolean" />
+        </div>
         <button type="submit">Signup</button>
       </form>
 
