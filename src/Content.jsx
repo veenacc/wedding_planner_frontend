@@ -8,6 +8,7 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
 import { Routes, Route } from "react-router-dom";
+import { EventsNew } from "./EventsNew";
 
 
 export function Content() {
@@ -65,15 +66,27 @@ export function Content() {
       setIsEventShowVisible(false);
     };
 
+      const handleCreateEvent = (params, successCallback) => {
+          console.log("handleCreateEvent", params);
+          axios.post("http://localhost:3000/weddings.json", params).then((response) => {
+             setEvents([...events, response.data]);
+            successCallback();
+          });
+         };
+
   useEffect(handleIndexEvents, []);
 
   return (
     <main>
+
+      
+
       <Routes>
         <Route path = "/Signup" element = {<Signup /> }   />
         <Route path = "/Login"  element = {<Login /> } />
         <Route path = "/LogoutLink" element = {<LogoutLink /> } />
         <Route path = "/Home" element = {<EventsIndex events={events} onShowEvent = {handleShowEvents}/>} />
+        <Route path = "/Create New" element = {<EventsNew onCreateNewEvent={handleCreateEvent}/> } />
       </Routes>
       
       
