@@ -83,22 +83,20 @@ export function Content() {
            });
          };
       
-
+         console.log(currentEvent.admin )
   useEffect(handleIndexEvents, []);
 
   return (
     <main>
-
       
-
       <Routes>
         <Route path = "/Signup" element = {<Signup /> }   />
         <Route path = "/Login"  element = {<Login /> } />
         <Route path = "/LogoutLink" element = {<LogoutLink /> } />
         <Route path = "/Home" element = {<EventsIndex events={events} onShowEvent = {handleShowEvents}/>} />
-        <Route path = "/Create New" element = {<EventsNew onCreateNewEvent={handleCreateEvent}/> } />
+        {/* {currentEvent.admin && (<Route path = "/CreateNew" element = {<EventsNew onCreateNewEvent={handleCreateEvent}/> } />)} */}
+        <Route path = "/CreateNew" element = {<EventsNew onCreateNewEvent={handleCreateEvent}/> } />
       </Routes>
-      
       
       <Modal show={isEventShowVisible} onClose ={handleClose} >
         <EventsShow  event={currentEvent} onUpdateUserId={handleUpdateUserid} onDeleteEvent={handleDeleteEvent} />

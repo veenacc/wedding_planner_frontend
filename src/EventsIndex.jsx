@@ -1,7 +1,14 @@
+
+import { Link } from "react-router-dom";
+
 export function EventsIndex(props) {
+  
   return (
     <div>
-      {/* <button onClick={() => props.onShowEvent(event)}>More info</button> */}
+      
+      <h2>
+        {props.events && props.events[0] && props.events[0].admin && (<Link to="/CreateNew">Create New</Link>)}
+      </h2>
       <h1>All Events</h1>
       {props.events.map((event) => (
          <div key={event.id}>
@@ -13,6 +20,7 @@ export function EventsIndex(props) {
           <button onClick={() => props.onShowEvent(event)}>More info</button>
          </div>
       ))}
-    </div>
+      
+    </div>  
   );
 }
