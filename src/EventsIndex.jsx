@@ -1,6 +1,7 @@
 export function EventsIndex(props) {
   return (
     <div>
+      {/* <button onClick={() => props.onShowEvent(event)}>More info</button> */}
       <h1>All Events</h1>
       {props.events.map((event) => (
          <div key={event.id}>

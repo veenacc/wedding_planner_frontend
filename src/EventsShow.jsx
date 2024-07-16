@@ -6,6 +6,14 @@ export function EventsShow(props) {
     props.onUpdateUserId() ; 
 
   }
+
+  const handleDeleteButton=()=>{
+    console.log("from  delete project")
+    // event.preventDefault();
+    props.onDeleteEvent(props.event.id) ; 
+
+  }
+
   return (
     <div>
       <h1>Wedding Details</h1>
@@ -16,6 +24,7 @@ export function EventsShow(props) {
       <p>Description: {props.event.description}</p>
       <p>Owner: {props.event.user_id} </p>
       {!props.event.user_id && localStorage.getItem('jwt') && <button onClick={handleAddToProject}>Add To project</button>}
+      { props.event.admin &&  <button onClick={handleDeleteButton}>Delete Event</button>}
     </div>
   );
 }

@@ -66,13 +66,23 @@ export function Content() {
       setIsEventShowVisible(false);
     };
 
-      const handleCreateEvent = (params, successCallback) => {
-          console.log("handleCreateEvent", params);
-          axios.post("http://localhost:3000/weddings.json", params).then((response) => {
-             setEvents([...events, response.data]);
-            successCallback();
-          });
+    const handleCreateEvent = (params, successCallback) => {
+        console.log("handleCreateEvent", params);
+        axios.post("http://localhost:3000/weddings.json", params).then((response) => {
+            setEvents([...events, response.data]);
+          successCallback();
+        });
+    };
+
+
+       const handleDeleteEvent = (id) => {
+           console.log("handleDeleteEvent", id);
+           axios.delete(`http://localhost:3000/weddings/${id}.json`).then((response) => {
+            setEvents(events.filter((event) => event.id !== id));
+             handleClose();
+           });
          };
+      
 
   useEffect(handleIndexEvents, []);
 
@@ -91,7 +101,7 @@ export function Content() {
       
       
       <Modal show={isEventShowVisible} onClose ={handleClose} >
-        <EventsShow  event={currentEvent} onUpdateUserId={handleUpdateUserid}/>
+        <EventsShow  event={currentEvent} onUpdateUserId={handleUpdateUserid} onDeleteEvent={handleDeleteEvent} />
       </Modal>
     </main>
   )
