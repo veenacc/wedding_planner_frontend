@@ -12,6 +12,7 @@ export function EventsIndex(props) {
       <h1>All Events</h1>
       {props.events.map((event) => (
          <div key={event.id}>
+          <h2>id: {event.id}</h2>
           <h2>{event.name}</h2>
           <h2>{event.address}</h2>
           <h2>{event.start_time}</h2>

@@ -9,6 +9,7 @@ import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
 import { Routes, Route } from "react-router-dom";
 import { EventsNew } from "./EventsNew";
+import { MyEventsIndex } from "./MyEventsIndex";
 
 
 export function Content() {
@@ -16,6 +17,7 @@ export function Content() {
   const [events, setEvents] = useState([]);
   const [currentEvent, setCurrentEvent] = useState({})
   const [isEventShowVisible, setIsEventShowVisible] = useState(false)
+  const [myevents, setMyEvents] = useState([]);
 
    const handleIndexEvents = () => {
      console.log("handleIndexEvents");
@@ -23,6 +25,14 @@ export function Content() {
        console.log(response.data);
        setEvents(response.data);
      });
+    };
+
+    const handleMyIndexEvents = () => {
+      console.log("handleMyIndexEvents");
+      axios.get("http://localhost:3000/mypage.json").then((response) => {
+        console.log(response.data);
+        setMyEvents(response.data);
+      });
     };
 
     const handleShowEvents = (event) => {
@@ -49,16 +59,11 @@ export function Content() {
               {
                 return evnt;
               }
-            }
-            )
-          )
-          // .then(data => {
-          //   console.log(data)
-          //   console.log(events)
-          // });
-          // handleClose();
-          // location.reload();
-        });
+            })
+          )  
+
+          setMyEvents([...myevents, response.data]);
+      });
     }
 
     const handleClose = () => {
@@ -83,9 +88,10 @@ export function Content() {
            });
          };
       
-         console.log(currentEvent.admin )
-  useEffect(handleIndexEvents, []);
-
+       
+    useEffect(handleIndexEvents, []);
+    // {localStorage.getItem('jwt') && (useEffect(handleMyIndexEvents, []))};
+    useEffect(handleMyIndexEvents, []);
   return (
     <main>
       
@@ -96,6 +102,7 @@ export function Content() {
         <Route path = "/Home" element = {<EventsIndex events={events} onShowEvent = {handleShowEvents}/>} />
         {/* {currentEvent.admin && (<Route path = "/CreateNew" element = {<EventsNew onCreateNewEvent={handleCreateEvent}/> } />)} */}
         <Route path = "/CreateNew" element = {<EventsNew onCreateNewEvent={handleCreateEvent}/> } />
+        <Route path = "/MyEvents" element = {< MyEventsIndex myevents={myevents}/>} />
       </Routes>
       
       <Modal show={isEventShowVisible} onClose ={handleClose} >
