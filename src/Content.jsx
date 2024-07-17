@@ -72,26 +72,25 @@ export function Content() {
     };
 
     const handleCreateEvent = (params, successCallback) => {
-        console.log("handleCreateEvent", params);
-        axios.post("http://localhost:3000/weddings.json", params).then((response) => {
-            setEvents([...events, response.data]);
+      console.log("handleCreateEvent", params);
+      axios.post("http://localhost:3000/weddings.json", params).then((response) => {
+          setEvents([...events, response.data]);
           successCallback();
-        });
+      });
     };
 
-
-       const handleDeleteEvent = (id) => {
-           console.log("handleDeleteEvent", id);
-           axios.delete(`http://localhost:3000/weddings/${id}.json`).then((response) => {
-            setEvents(events.filter((event) => event.id !== id));
-             handleClose();
-           });
-         };
+    const handleDeleteEvent = (id) => {
+      console.log("handleDeleteEvent", id);
+      axios.delete(`http://localhost:3000/weddings/${id}.json`).then((response) => {
+        setEvents(events.filter((event) => event.id !== id));
+        handleClose();
+      });
+    };
       
-       
     useEffect(handleIndexEvents, []);
-    // {localStorage.getItem('jwt') && (useEffect(handleMyIndexEvents, []))};
+    // {localStorage.getItem('jwt') && (useEffect(handleMyIndexEvents, []))}; ->handled at the backend by rendering empty array []
     useEffect(handleMyIndexEvents, []);
+
   return (
     <main>
       
