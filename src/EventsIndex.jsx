@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 export function EventsIndex(props) {
   
   return (
-    <div className="mb-10 py-10">
+    <div className="pb-7">
 
       <p className="bg-orange-50 "> 
       <h1 className="  font-serif  text-center text-4xl py-2 text-amber-950" >Welcome To Dreamz </h1>
-        <h2 className="outline outline-offset-12 outline-amber-950  bg-amber-600  hover:bg-amber-950  hover:text-slate-300 rounded-md size-fit px-10 ml-40 py-0" >
+        <h2 className="  bg-amber-600  hover:bg-amber-950  hover:text-slate-300 rounded-md size-fit px-10 ml-40 py-0 shadow-inner shadow-amber-950" >
           {props.events && props.events[0] && props.events[0].admin && (<Link to="/CreateNew">Create New</Link>)}
         </h2>
         
