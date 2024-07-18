@@ -22,36 +22,41 @@ export function Signup() {
   };
 
   return (
-    <div id="signup">
-      <h1>Signup</h1>
-    
-      <form onSubmit={handleSubmit}>
-        <div>
-          Name: <input name="name" type="text" />
-        </div>
-        <div>
-          Email: <input name="email" type="email" />
-        </div>
-        <div>
-          Password: <input name="password" type="password" />
-        </div>
-        <div>
-          Password confirmation: <input name="password_confirmation" type="password" />
-        </div>
-        <div>
-          Image: <input name="image_url" type="url" />
-        </div>
-        <div>
-          Admin Status: <input name="admin" type="boolean" />
-        </div>
-        <button type="submit">Signup</button>
-      </form>
-
-      <ul>
-        {errors.map((error) => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
+    <div id="signup" className="bg-cover bg-center bg-orange-50 h-dvh w-full">
+      <h1 className="text-center p-8 font-serif text-4xl mb-4">Signup</h1>
+      <div className="flex items-center justify-center">
+        <form onSubmit={handleSubmit} className="  h-1/2 w-1/2 bg-orange-100  " >
+          <div className="flex items-center justify-center  p-3 ">
+            Name: <input name="name" type="text" className="outline outline-offset-2 outline-amber-900 "/>
+          </div>
+          <div className="flex items-center justify-center p-3">
+            Email: <input name="email" type="email" className="outline outline-offset-2 outline-amber-900 "/>
+          </div>
+          <div className="flex items-center justify-center p-3">
+            Password: <input name="password" type="password" className="outline outline-offset-2 outline-amber-900 "/>
+          </div>
+          <div className="flex items-center justify-center p-3">
+            Password confirmation: <input name="password_confirmation" type="password" className="outline outline-offset-2 outline-amber-900 "/>
+          </div>
+          <div className="flex items-center justify-center p-3">
+            Image: <input name="image_url" type="url" className="outline outline-offset-2 outline-amber-900 "/>
+          </div>
+          <div className="flex items-center justify-center p-3">
+            Admin Status: <input name="admin" type="boolean" className="outline outline-offset-2 outline-amber-900" />
+          </div>
+          <div className="flex items-center justify-center p-3 " >
+            <button type="submit" className="px-5 py-3 hover:text-orange-900 bg-orange-300 rounded-md outline outline-offset-2 outline-amber-900 " >Signup</button>
+          </div>
+        </form>
+      </div>
+      <div className=" flex items-center justify-center  bg-orange-200 "> 
+          <ul >
+          {errors.map((error) => (
+            <li key={error} >{error}</li>
+          ))}
+          </ul>
+      </div>
+      
 
     </div>
   );

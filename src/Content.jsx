@@ -98,7 +98,7 @@ export function Content() {
         <Route path = "/Signup" element = {<Signup /> }   />
         <Route path = "/Login"  element = {<Login /> } />
         <Route path = "/LogoutLink" element = {<LogoutLink /> } />
-        <Route path = "/Home" element = {<EventsIndex events={events} onShowEvent = {handleShowEvents}/>} />
+        <Route path = "/" element = {<EventsIndex events={events} onShowEvent = {handleShowEvents}/>} />
         {/* {currentEvent.admin && (<Route path = "/CreateNew" element = {<EventsNew onCreateNewEvent={handleCreateEvent}/> } />)} */}
         <Route path = "/CreateNew" element = {<EventsNew onCreateNewEvent={handleCreateEvent}/> } />
         <Route path = "/MyEvents" element = {< MyEventsIndex myevents={myevents}/>} />
